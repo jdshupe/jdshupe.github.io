@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body style="width: 75%; margin: auto;">
+
+  <h1 id="home"><a href="index.html">Home</a> > COINS Tool Tracking</h1>
+
+  <ul id="table_of_contents">
+    <li><a href="#initial_setup"> Initial Setup</a></li>
+    <ul>
+      <li><a href="#inventory_groups">   Inventory Groups   </a></li>
+      <li><a href="#inventory_locations">Inventory Locations</a></li>
+      <li><a href="#inventory_items">    Inventory Items    </a></li>
+    </ul>
+    <li><a href="#maintaining_inventory">Maintaining Inventory</a></li>
+    <ul>
+      <li><a href="#new_items"> Adding New Items                   </a></li>
+      <ul>
+        <li><a href="#single_add">Single Item   </a></li>
+        <li><a href="#multi_add"> Multiple Items</a></li>
+      </ul>
+      <li><a href="#transfering">Transfering Items Between Locations</a></li>
+    </ul>
+  </ul>
+
+  <div><h2 id="initial_setup">Initial Setup</h2>  
+    <div style="margin-left: 2%;" id="inventory_groups"><h3>Inventory Groups</h3>
+
+      <p>Codes that contain costing information for <a href="#inventory_items">inventory items</a>.</p>
+      <p>Each group contains:</p>
+      <ul>
+        <li>Group Code</li>
+        <li>Description</li>
+        <li>Cost Locations</li>
+        <li>Cost Codes by Level</li>
+      </ul>
+    </div><br>
+
+    <div style="margin-left: 2%;" id="inventory_location"><h3>Inventory Locations</h3>
+    
+      <p>Each entry represents a location where inventory can be stored, transfered to, or transfered from.</p>
+      <p>Each Location contains:</p>
+      <ul>
+        <li>Code</li>
+        <li>Name</li>
+        <li>Default Location (Y/N)</li>
+        <li>F/A Department</li>
+        <li>Workshop (Y/N)</li>
+        <li>Parent Location</li>
+      </ul>
+      <p>A location could be set up for each job site so tracking of job specific tools is easier. Another option is to do person specific but this can also be tracked
+        by setting the responsible person when doing an <a href="inventory_transaction">Inventory Transaction</a>.
+      </p>
+    </div><br>
+
+    <div style="margin-left: 2%;" id="inventory_items"><h3>Inventory Items</h3>
+
+      <p>
+        Each entry represents an item that is in inventory. Inventory items can be part of an <a href="#inventory_groups">inventory group</a> and will inherit the groups
+        properties. Inventory items can be transfered between <a href="#inventory_location">inventory locations</a>.
+      </p>
+      <p>Each Item contains:</p>
+      <ul>
+        <li>Code</li>
+        <li>Description</li>
+        <li>Group</li>
+        <li>Commodity Code</li>
+      </ul>
+      <p>The Inventory Code must be a unique value for each line. This could be used to store Tool# or serial number. Could possibly be setup to auto assign so giving
+        new tools an inventory number is automatic.
+      </p>
+    </div><br>
+  </div>
+
+  <div id="maintaining_inventory"><h2>Maintaining Inventory</h2>
+    <div style="margin-left: 2%;" id="new_items"><h3>Adding New Items</h3>
+      <p>To add new items to the inventory, they need to first have an inventory line created.</p>
+      <h4 id="single_add">Add Single Item</h4>
+      <ol>
+        <li>Go to "Inventory > Inventory Items" and click "add". </li>
+        <li>Input the Inventory Code</li>
+        <li>Fill in the Description</li>
+        <li>Select the applicable Inventory Group</li>
+      </ol>
+      <p>Returning to the "Inventory Items" screen should now show the new Inventory Item.</p>
+      <h4 id="multi_add">Add Multiple Items</h4>
+      <ol>
+        <li>Go to "Inventory > Inventory Items"</li>
+        <li>Click "BULK"</li>
+        <li>Click "add"</li>
+        <li>Open the downloaded excel file and click "Enable Editing"</li>
+        <li>Columns A, C, and E must be filled out but other columns can be as well.</li>
+        <li>Copy the entire workbook</li>
+        <li>Paste back into the Coins screen</li>
+        <li>Click "Save"</li>
+      </ol>
+      <p>Once the Inventory lines are added an initial quantity needs to be moved into a location to enable transfering and tracking.</p>
+      <ol>
+        <li>Go to "Inventory > Input Inventory Transaction"</li>
+      </ol>
+    </div>
+
+    <div style="margin-left: 2%;" id=""><h3></h3>
+
+    </div>
+  </div>
+
+  <p>blank,blank,sti_code(inventory code),sti_desc(inventory description),sti_per(Cost Unit),sls_balance(quantity at warehouse),sti_price(item price),sls_wdv,stg_code(inventory group),vat_code(tax code),stl_code(location code)</p>
+
+
+</body>
+</html>
