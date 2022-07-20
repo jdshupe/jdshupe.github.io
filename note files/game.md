@@ -1,7 +1,8 @@
-# main loop
+# MAIN LOOP
+Players (wake up/arrive) in a large grassy field. In the distance they can see large stone walls in all 4 directions. In front of them at their feet is a plaque carved into a large stone block in the ground. Written on the plaque is "_(create mysterious poem telling players to explore the dungeon and find the exit)_". Upon heading to one of the walls, a small open building can be seen next to the wall. The building houses a chest which upon opening causes large parts of the wall to slide back, revealing massive doors are built into the wall. The chest contains some very basic starter gear, enemies rush out of the newly opened door and the players first encounter begins.
 - head out of the main area, into a tile dungeon
 - have to gamble appropriately to go out, get resources, and make it back
-## home area
+## HOME AREA
 - tiled zone with room for all future buildings and resources
 - rebuilding each shop or utility will open the opportunity for certain upgrades
 - this is where all powering up happens
@@ -10,7 +11,7 @@
     - ingredients for potions
     - food
     - basic gear and clothing possibly
-## dungeon area
+## DUNGEON AREA
 - use day/night cycle to toggle difficulty of encounters and encourage short expeditions instead of multi day trips
 - fully surrounds the home area
 - can be entered from the 4 cardinal directions
@@ -20,7 +21,7 @@
 - loot must be carried by the players and the methods of carrying it can be upgraded
 
 - GOAL: at the outer range of the dungeon there is a room with a harder fight protecting an exit portal
-### player death
+### PLAYER DEATH
 - if players die in the maze, teammates can take their stuff home
 - once a player dies, there is a random chance on the next excursion that you will find the room they died in
 
