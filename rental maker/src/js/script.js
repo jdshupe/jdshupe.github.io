@@ -4,6 +4,7 @@
  * @returns {*} 
  */
 function getCodes () {
+  console.log('getCodes started')
   /** @type {string} */
   var url = `https://raw.githubusercontent.com/jdshupe/jdshupe.github.io/main/rental%20maker/src/db.json`;
   
@@ -28,6 +29,7 @@ function getCodes () {
     }
   }
   request.send();
+  console.log('getCodes finished')
   return info;
 }
 
@@ -346,6 +348,7 @@ function selectElementContents(el) {
 }
 
 function populateDatalist(input, repeatable) {
+  console.log('populateDatalist started')
   var datalist = input.nextElementSibling;
   var arrayOfCharges = repeatable ? mainData.Data.repeatable : mainData.Data.oneTime;
   for (let i = 0; i < arrayOfCharges.length; i++) {
@@ -353,6 +356,7 @@ function populateDatalist(input, repeatable) {
     option.value = arrayOfCharges[i].Description + ' - ' + arrayOfCharges[i].tsv_code
     datalist.appendChild(option)
   }
+  console.log('populateDatalist finished')
 }
 
 
