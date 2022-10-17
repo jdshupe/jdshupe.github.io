@@ -11,7 +11,7 @@
 
   <title>Create New Rental</title>
 </head>
-<body onload="populateDatalist(rep_charge_1, true); populateDatalist(one_time_charge_1, false);">
+<body onload="">
   <div id="form">
     <form action="post">
       <table id="rental_form_table">
@@ -141,6 +141,8 @@
   <script src="src/js/script.js"></script>
   <script>
     var mainData = getCodes();
+    populateDatalist(rep_charge_1, true);
+    populateDatalist(one_time_charge_1, false);
   </script>
 </body>
 </html>
