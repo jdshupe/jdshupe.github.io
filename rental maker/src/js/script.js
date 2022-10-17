@@ -5,7 +5,7 @@
  */
 function getCodes () {
   /** @type {string} */
-  var url = `file:///src/db.json`;
+  var url = `https://raw.githubusercontent.com/jdshupe/jdshupe.github.io/main/rental%20maker/src/db.json`;
   
   var info = {"Data":{
     "repeatable": [],
