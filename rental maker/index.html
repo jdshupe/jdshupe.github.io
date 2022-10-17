@@ -8,10 +8,14 @@
   <link rel="stylesheet" href="src/css/main.css">
 
   <script src="src/js/jquery.js"></script>
+  <script src="src/js/script.js"></script>
 
   <title>Create New Rental</title>
 </head>
 <body onload="">
+  <script>
+    var mainData = getCodes();
+  </script>
   <div id="form">
     <form action="post">
       <table id="rental_form_table">
@@ -40,6 +44,9 @@
               <input id="rep_charge_1_costCode" type="text" class="rep costCode" name="Repeatable Charge 1 CostCode" list="rep_charge_1_costCodeOptions" value="400">
               <datalist id="rep_charge_1_costCodeOptions"></datalist>
             </td>
+            <script>
+              populateDatalist(rep_charge_1, true);
+            </script>
           </tr>
 
           <!-- Table Rows for One Time Charges -->
@@ -55,6 +62,9 @@
               <datalist id="one_time_charge_1_costCodeOptions"></datalist>
             </td>
             <td><button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button></td>
+            <script>
+              populateDatalist(one_time_charge_1, false);
+            </script>
           </tr>
 
           <tr>
@@ -138,11 +148,5 @@
       </table>
     </div>
   </div>
-  <script src="src/js/script.js"></script>
-  <script>
-    var mainData = getCodes();
-    populateDatalist(rep_charge_1, true);
-    populateDatalist(one_time_charge_1, false);
-  </script>
 </body>
 </html>
