@@ -141,7 +141,7 @@
   <script src="src/js/script.js"></script>
   <script>
     var mainData = getCodes();
-    $(document).onload(function () {
+    $(document).delegate("body", "pageinit", function () {
       populateDatalist(rep_charge_1, true);
       populateDatalist(one_time_charge_1, false);
     });    
