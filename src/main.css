@@ -1,0 +1,14 @@
+. {
+	color: white;
+}
+body {
+	background-color: grey;
+}
+
+a {
+	color: white;
+}
+
+select {
+	-moz-appearance: menulist;
+}
