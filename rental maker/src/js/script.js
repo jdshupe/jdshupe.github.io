@@ -8,10 +8,14 @@ function getCodes () {
   /** @type {string} */
   var url = `https://raw.githubusercontent.com/jdshupe/jdshupe.github.io/main/rental%20maker/src/db.json`;
   
-  var info = {"Data":{
-    "repeatable": [],
-    "oneTime": []
-  }};
+	var info = 
+	{
+		"Data":
+		{
+			"repeatable": [],
+			"oneTime": []  
+		}
+	};
 
   /** @type {*} */
   var request = new XMLHttpRequest();

@@ -12,17 +12,38 @@
   font-size: x-small;
 }
 
-body {
-  background-color: rgb(61, 61, 61);
-  font-family: Consolas, 'Courier New', monospace;
+html {
+	height: 100%;
+	background-image: linear-gradient(#14303a, #245668);
+	overflow: hidden;
 }
 
-div {
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  overflow-x: auto;
-  color: #fffeef;
+body {
+	height: 100%;
+	width: 100%;
+	font-family: Consolas, 'Courier New', monospace;
+}
+
+#navigation-menu {
+	height: 95%;
+	width: 15%;
+	margin-top: 5px;
+	margin-left: 2.5%;
+	display: inline-block;
+	vertical-align: top;
+	border-right: solid white 2px;
+}
+
+#main-content {
+	height: 95%;
+	width: 75%;
+	margin-top: 5px;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	display:inline-block;
+	vertical-align: top;
+
+	color: white;
 }
 
 #form {
@@ -44,6 +65,18 @@ div.search {
   width: 300px;
 }
 
+a {
+	color: white;
+	text-decoration:none;
+}
+a:hover {
+	color: orange;
+}
+
+a:active {
+	color: gray;
+}
+
 .search-option {
   border: unset;
   border-radius: unset;
@@ -54,11 +87,6 @@ div.search {
 
 .search-option:hover{
   background-color: rgb(172, 172, 172);
-}
-
-input, button, html, body {
-  font-family: Consolas, 'Courier New', monospace;
-  margin: 2px;
 }
 
 input.description, #job_num, #wbs_code, #tax_code, input.price{

@@ -16,135 +16,147 @@
 
 </head>
 <body>
-  <script>
-    var mainData = getCodes();
-  </script>
-  <button type="button" onclick="populateDatalist(rep_charge_1, true);populateDatalist(one_time_charge_1, false)">Populate Dropdown Data</button>
-  <div id="form">
-    <form action="post">
-      <table id="rental_form_table">
-        <tbody>
-          <tr>
-            <td><label for="job_num">Job Number</label></td>
-            <td><input id="job_num" type="text" name="Job Number"></td>
-            <td><input id="wbs_code" type="text" name="WBS Code" value="0A-00-"></td>
-          </tr>
-          <tr>
-            <td><label for="tax_code">Tax Code</label></td>
-            <td><input id="tax_code" type="text" name="Tax Code"></td>
-            <td><button type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button></td>
-            <td><button type="button" onclick="addRentalRow('single')">Add One Time Charge</button></td>
-          </tr>
+	<script>
+		var mainData = getCodes();
+	</script>
+	<div id="navigation-menu">
+		<h1 id="home"><a href="../index.html">Shupe Systems</a></h1>
+		<ul>
+			<li><a href="tooltracking.html">Tool Tracking</a></li>
+			<li><a href="databaseTables.html">Database Tables</a></li>
+			<li><a href="SocialWork.html">Social Work</a></li>
+			<li><a href="projectNotes.html">Project Notes</a></li>
+			<li><a href="rental maker/index.html">Rental Maker</a></li>
+		</ul>
+	</div>
+	<div id="main-content">
+		<button type="button" onclick="populateDatalist(rep_charge_1, true);populateDatalist(one_time_charge_1, false)">Populate Dropdown Data</button>
+		<div id="form">
+		<form action="post">
+		  <table id="rental_form_table">
+			<tbody>
+			  <tr>
+				<td><label for="job_num">Job Number</label></td>
+				<td><input id="job_num" type="text" name="Job Number"></td>
+				<td><input id="wbs_code" type="text" name="WBS Code" value="0A-00-"></td>
+			  </tr>
+			  <tr>
+				<td><label for="tax_code">Tax Code</label></td>
+				<td><input id="tax_code" type="text" name="Tax Code"></td>
+				<td><button type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button></td>
+				<td><button type="button" onclick="addRentalRow('single')">Add One Time Charge</button></td>
+			  </tr>
 
-          <!-- Table Rows for Repeatable Charges -->
-          <tr id="rep_charge_row_1" class="rep">
-            <td><label for="rep_charge_1">Repeatable Charges</label></td>
-            <td>
-              <input id="rep_charge_1" type="text" class="rep description" name="Repeatable Charge 1" list="rep_charge_1_options">
-              <datalist id="rep_charge_1_options"></datalist>
-            </td>
-            <td><input id="rep_charge_1_price" type="number" class="rep price" name="Repeatable Charge 1 Price" placeholder="Price"></td>
-            <td>
-              <input id="rep_charge_1_costCode" type="text" class="rep costCode" name="Repeatable Charge 1 CostCode" list="rep_charge_1_costCodeOptions" value="400">
-              <datalist id="rep_charge_1_costCodeOptions"></datalist>
-            </td>
-          </tr>
+			  <!-- Table Rows for Repeatable Charges -->
+			  <tr id="rep_charge_row_1" class="rep">
+				<td><label for="rep_charge_1">Repeatable Charges</label></td>
+				<td>
+				  <input id="rep_charge_1" type="text" class="rep description" name="Repeatable Charge 1" list="rep_charge_1_options">
+				  <datalist id="rep_charge_1_options"></datalist>
+				</td>
+				<td><input id="rep_charge_1_price" type="number" class="rep price" name="Repeatable Charge 1 Price" placeholder="Price"></td>
+				<td>
+				  <input id="rep_charge_1_costCode" type="text" class="rep costCode" name="Repeatable Charge 1 CostCode" list="rep_charge_1_costCodeOptions" value="400">
+				  <datalist id="rep_charge_1_costCodeOptions"></datalist>
+				</td>
+			  </tr>
 
-          <!-- Table Rows for One Time Charges -->
-          <tr id="one_time_charge_row_1" class="one_time">
-            <td><label for="one_time_charge_1">One Time Charges</label></td>
-            <td>
-              <input id="one_time_charge_1" type="text" class="one_time description" name="One Time Charge 1" list="one_time_charge_1_options">
-              <datalist id="one_time_charge_1_options"></datalist>
-            </td>
-            <td><input id="one_time_charge_1_price" type="number" class="one_time price" name="One Time Charge 1 Price" placeholder="Price"></td>
-            <td>
-              <input id="one_time_charge_1_costCode" type="text" class="one_time costCode" name="One Time Charge 1 CostCode" list="one_time_charge_1_costCodeOptions" value="400">
-              <datalist id="one_time_charge_1_costCodeOptions"></datalist>
-            </td>
-            <td><button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button></td>
-          </tr>
+			  <!-- Table Rows for One Time Charges -->
+			  <tr id="one_time_charge_row_1" class="one_time">
+				<td><label for="one_time_charge_1">One Time Charges</label></td>
+				<td>
+				  <input id="one_time_charge_1" type="text" class="one_time description" name="One Time Charge 1" list="one_time_charge_1_options">
+				  <datalist id="one_time_charge_1_options"></datalist>
+				</td>
+				<td><input id="one_time_charge_1_price" type="number" class="one_time price" name="One Time Charge 1 Price" placeholder="Price"></td>
+				<td>
+				  <input id="one_time_charge_1_costCode" type="text" class="one_time costCode" name="One Time Charge 1 CostCode" list="one_time_charge_1_costCodeOptions" value="400">
+				  <datalist id="one_time_charge_1_costCodeOptions"></datalist>
+				</td>
+				<td><button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button></td>
+			  </tr>
 
-          <tr>
-            <td><label for="start_date">Start Date</label></td>
-            <td><input id="start_date" type="date" name="Start Date"></td>
-          </tr>
-          <tr>
-            <td><label for="duration">Duration</label></td>
-            <td><input id="duration" type="number" name="Duration"></td>
-          </tr>
-          <tr>
-            <td><label for="rent_length">Rental Length</label></td>
-            <td>
-              <label for="1">1</label>
-              <input type="radio" name="rental length" id="1" value="1">
-              <label for="7">7</label>
-              <input type="radio" name="rental length" id="7" value="7">
-              <label for="28">28</label>
-              <input type="radio" name="rental length" id="28" value="28">
-              <label for="30">30</label>
-              <input type="radio" name="rental length" id="30" value="30">
-            </td>
-          </tr>          
-        </tbody>
-      </table>
-    </form>
+			  <tr>
+				<td><label for="start_date">Start Date</label></td>
+				<td><input id="start_date" type="date" name="Start Date"></td>
+			  </tr>
+			  <tr>
+				<td><label for="duration">Duration</label></td>
+				<td><input id="duration" type="number" name="Duration"></td>
+			  </tr>
+			  <tr>
+				<td><label for="rent_length">Rental Length</label></td>
+				<td>
+				  <label for="1">1</label>
+				  <input type="radio" name="rental length" id="1" value="1">
+				  <label for="7">7</label>
+				  <input type="radio" name="rental length" id="7" value="7">
+				  <label for="28">28</label>
+				  <input type="radio" name="rental length" id="28" value="28">
+				  <label for="30">30</label>
+				  <input type="radio" name="rental length" id="30" value="30">
+				</td>
+					</tr>          
+				</tbody>
+			</table>
+		</form>
+	</div>
     <button onclick="createUpload()">Create Rental</button>
     <button onclick="window.location.reload()">New Rental</button>
-  </div>
-  <div>
-    <button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
-    <div id="rental-div" class="table">
-      <table id="rental" hidden>
-        <thead>
-          <tr>
-            <td>Item</td>
-            <td>Added Line Type</td>
-            <td>Plant Item?</td>
-            <td>Job</td>
-            <td>Code</td>
-            <td>Description</td>
-            <td>WBS Code</td>
-            <td>Quantity</td>
-            <td>Un</td>
-            <td>Price</td>
-            <td>Per</td>
-            <td>Disc%</td>
-            <td>Merchandise</td>
-            <td>Sales/Use Tax Code</td>
-            <td>Freight</td>
-            <td>pol_fchgControl__1</td>
-            <td>pol_chgovd__1</td>
-            <td>T/X</td>
-            <td>pol_taxovr__1</td>
-            <td>Tax</td>
-            <td>Service Order Number</td>
-            <td>RO_sso_desc</td>
-            <td>RO_slc_name</td>
-            <td>pot_type</td>
-            <td>sso_intref</td>
-            <td>RO_se_orderRowid</td>
-            <td>Type of Work</td>
-            <td>RO_sao_desc</td>
-            <td>sao_intref</td>
-            <td>Job Number</td>
-            <td>RO_pol_job_name</td>
-            <td>Due Date</td>
-            <td>Further Discount %</td>
-            <td>pol_disc3</td>
-            <td>pol_disc4</td>
-            <td>Cost Type</td>
-            <td>Cost Category</td>
-            <td>pol_factor</td>
-            <td>Eligible NPA Purchase with Supplier</td>
-            <td>Eligible Manufacturer</td>
-          </tr>
-        </thead>
-        <tbody id="rental-body">
-    
-        </tbody>
-      </table>
-    </div>
+	<div>
+		<button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
+		<div id="rental-div" class="table">
+		<table id="rental" hidden>
+			<thead>
+				<tr>
+					<td>Item</td>
+					<td>Added Line Type</td>
+					<td>Plant Item?</td>
+					<td>Job</td>
+					<td>Code</td>
+					<td>Description</td>
+					<td>WBS Code</td>
+					<td>Quantity</td>
+					<td>Un</td>
+					<td>Price</td>
+					<td>Per</td>
+					<td>Disc%</td>
+					<td>Merchandise</td>
+					<td>Sales/Use Tax Code</td>
+					<td>Freight</td>
+					<td>pol_fchgControl__1</td>
+					<td>pol_chgovd__1</td>
+					<td>T/X</td>
+					<td>pol_taxovr__1</td>
+					<td>Tax</td>
+					<td>Service Order Number</td>
+					<td>RO_sso_desc</td>
+					<td>RO_slc_name</td>
+					<td>pot_type</td>
+					<td>sso_intref</td>
+					<td>RO_se_orderRowid</td>
+					<td>Type of Work</td>
+					<td>RO_sao_desc</td>
+					<td>sao_intref</td>
+					<td>Job Number</td>
+					<td>RO_pol_job_name</td>
+					<td>Due Date</td>
+					<td>Further Discount %</td>
+					<td>pol_disc3</td>
+					<td>pol_disc4</td>
+					<td>Cost Type</td>
+					<td>Cost Category</td>
+					<td>pol_factor</td>
+					<td>Eligible NPA Purchase with Supplier</td>
+					<td>Eligible Manufacturer</td>
+			  </tr>
+			</thead>
+			<tbody id="rental-body">
+		
+			</tbody>
+		  </table>
+		</div>
+	  </div>
   </div>
 </body>
 </html>
