@@ -92,3 +92,7 @@ a:active {
 input.description, #job_num, #wbs_code, #tax_code, input.price{
   width: 95%;
 }
+
+input.description {
+	background:url('images/arrow.png') no-repeat right center;
+}
