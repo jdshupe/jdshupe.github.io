@@ -19,39 +19,54 @@
 <body>
 	<script>
 		var mainData = getCodes();
+		populateDatalist(rep-charge-1, true);
 	</script>
 	<main id="main-content" class="container">
-		<button class="column1 row1" type="button" onclick="populateDatalist(rep_charge_1, true);populateDatalist(one_time_charge_1, false)">Populate Dropdown Data</button>
+		<button class="column1-2 row1" type="button" onclick="populateDatalist(rep_charge_1, true);populateDatalist(one_time_charge_1, false)">Populate Dropdown Data</button>
 
-		<label id="job-num-label" class="column1 row2" for="job-num-input">Job Number</label>
-		<input id="job-num-input" class="column2 row2" type="text">
-		<input id="wbs-code-input" class="column3 row2" type="text" value="0A-00-">
+		<label id="job-num-label"	class="column1 row2" for="job-num-input">Job Number</label>
+		<input id="job-num-input"	class="column2 row2" type="text">
+		<input id="wbs-code-input"	class="column3 row2" type="text" value="0A-00-">
 
-		<label id="tax-code-label" class="column1 row3" for="tax_code-input">Tax Code</label>
-		<input id="tax-code-input" class="column2 row3" type="text" name="Tax Code">
-		<button class="column1 row4" type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button>
-		<button class="column2 row4" type="button" onclick="addRentalRow('single')">Add One Time Charge</button>
+		<label id="tax-code-label"	class="column1 row3" for="tax_code-input">Tax Code</label>
+		<input id="tax-code-input"	class="column2 row3" type="text" name="Tax Code">
 
-		<label class="column1 row5" for="rep-charge-1">Repeatable Charges</label>
-		<input id="rep-charge-1" class="column2 row5" type="text" name="Repeatable Charge 1" list="rep-charge-1-options">
-		<datalist id="rep-charge-1-options"></datalist>
-		<input id="rep-charge-1-price" class="column3 row5" type="number" placeholder="Price">
-		<input id="rep-charge-1-costCode" class="column4 row5" type="text" value="400">
+		<label	class="column1-2 row4 centered bold" for="rep-charge-1">Repeatable Charges</label>
+		<button class="column3 row4" type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button>
 
-		<label class="column1 row6" for="one-time-charge-1">One Time Charges</label>
-		<input id="one-time-charge-1" class="column2 row6" type="text" list="one-time-charge-1-options">
-		<datalist id="one-time-charge-1-options"></datalist>
-		<input id="one-time-charge-1-price" type="number" class="column3 row6" placeholder="Price"></td>
-		<input id="one-time-charge-1-costCode" type="text" class="column4 row6" value="400">
-		<button id="one-time-charge-1-delete" class="column5 row6" type="button" onclick="deleteRow('one-time-charge-row-1')">X</button>
+		<table id="repeatable-charges-table">
+			<tr>
+				<td class="description-input">
+					<input id="rep-charge-1" type="text" name="Repeatable Charge 1" list="rep-charge-1-options">
+					<datalist id="rep-charge-1-options"></datalist>
+				</td>
+				<td class="price-input"><input id="rep-charge-1-price" type="number" placeholder="Price"></td>
+				<td><input id="rep-charge-1-costCode" type="text" value="400"></td>
+			</tr>
+		</table>
 
-		<label class="column1 row7" for="start-date">Start Date</label>
-		<input class="column2 row7" id="start-date" type="date">
+		<label class="column1-2 row6 centered bold" for="one-time-charge-1">One Time Charges</label>
+		<button class="column3 row6" type="button" onclick="addRentalRow('single')">Add One Time Charge</button>
 
-		<label class="column1 row8" for="duration">Duration</label>
-		<input class="column2 row8" id="duration" type="number">
+		<table id="one-time-charges-table">
+			<tr>
+				<td class="description-input">
+					<input id="one-time-charge-1" type="text" list="one-time-charge-1-options">
+					<datalist id="one-time-charge-1-options"></datalist>
+				</td>
+				<td class="price-input"><input id="one-time-charge-1-price" type="number"  placeholder="Price"></td>
+				<td><input id="one-time-charge-1-costCode" type="text"  value="400"></td>
+				<td><button id="one-time-charge-1-delete"  type="button" onclick="deleteRow('one-time-charge-row-1')">X</button></td>
+			</tr>
+		</table>
 
-		<label class="column1 row7" for="rent-length">Rental Length</label>
+		<label class="column1 row8" for="start-date">Start Date</label>
+		<input class="column2 row8" id="start-date" type="date">
+
+		<label class="column1 row9" for="duration">Duration</label>
+		<input class="column2 row9" id="duration" type="number">
+
+		<label class="column1 row10" for="rent-length">Rental Length</label>
 		<div class="flex-container column2">
 			<label for="1">1</label>
 			<input type="radio" name="rental length" id="1" value="1">
