@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tbolt/boltcss/bolt.css">
   <link rel="stylesheet" href="src/css/main.css">
 
   <script src="src/js/jquery.js"></script>
@@ -19,90 +20,71 @@
 	<script>
 		var mainData = getCodes();
 	</script>
-	<div id="navigation-menu">
-		<h1 id="home"><a href="../index.html">Shupe Systems</a></h1>
-		<ul>
-			<li><a href="tooltracking.html">Tool Tracking</a></li>
-			<li><a href="databaseTables.html">Database Tables</a></li>
-			<li><a href="SocialWork.html">Social Work</a></li>
-			<li><a href="projectNotes.html">Project Notes</a></li>
-			<li><a href="rental maker/index.html">Rental Maker</a></li>
-		</ul>
-	</div>
-	<div id="main-content">
-		<button type="button" onclick="populateDatalist(rep_charge_1, true);populateDatalist(one_time_charge_1, false)">Populate Dropdown Data</button>
-		<div id="form">
-		<form action="post">
-		  <table id="rental_form_table">
-			<tbody>
-			  <tr>
-				<td><label for="job_num">Job Number</label></td>
-				<td><input id="job_num" type="text" name="Job Number"></td>
-				<td><input id="wbs_code" type="text" name="WBS Code" value="0A-00-"></td>
-			  </tr>
-			  <tr>
-				<td><label for="tax_code">Tax Code</label></td>
-				<td><input id="tax_code" type="text" name="Tax Code"></td>
-				<td><button type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button></td>
-				<td><button type="button" onclick="addRentalRow('single')">Add One Time Charge</button></td>
-			  </tr>
+	<main id="main-content" class="container">
+		<label id="job-num-label"	class="column1 row1" for="job-num-input">Job Number</label>
+		<input id="job-num-input"	class="column2 row1" 
+			onclick="
+				populateDatalist('rep-charge-1', true);
+				populateDatalist('one-time-charge-1', false);
+				document.getElementById('job-num-input').onclick = null;" 
+			type="text">
+		<input id="wbs-code-input"	class="column3 row1" type="text" value="0A-00-">
 
-			  <!-- Table Rows for Repeatable Charges -->
-			  <tr id="rep_charge_row_1" class="rep">
-				<td><label for="rep_charge_1">Repeatable Charges</label></td>
-				<td>
-				  <input id="rep_charge_1" type="text" class="rep description" name="Repeatable Charge 1" list="rep_charge_1_options">
-				  <datalist id="rep_charge_1_options"></datalist>
-				</td>
-				<td><input id="rep_charge_1_price" type="number" class="rep price" name="Repeatable Charge 1 Price" placeholder="Price"></td>
-				<td>
-				  <input id="rep_charge_1_costCode" type="text" class="rep costCode" name="Repeatable Charge 1 CostCode" list="rep_charge_1_costCodeOptions" value="400">
-				  <datalist id="rep_charge_1_costCodeOptions"></datalist>
-				</td>
-			  </tr>
+		<label id="tax-code-label"	class="column1 row2" for="tax_code-input">Tax Code</label>
+		<input id="tax-code-input"	class="column2 row2" type="text" name="Tax Code">
 
-			  <!-- Table Rows for One Time Charges -->
-			  <tr id="one_time_charge_row_1" class="one_time">
-				<td><label for="one_time_charge_1">One Time Charges</label></td>
-				<td>
-				  <input id="one_time_charge_1" type="text" class="one_time description" name="One Time Charge 1" list="one_time_charge_1_options">
-				  <datalist id="one_time_charge_1_options"></datalist>
-				</td>
-				<td><input id="one_time_charge_1_price" type="number" class="one_time price" name="One Time Charge 1 Price" placeholder="Price"></td>
-				<td>
-				  <input id="one_time_charge_1_costCode" type="text" class="one_time costCode" name="One Time Charge 1 CostCode" list="one_time_charge_1_costCodeOptions" value="400">
-				  <datalist id="one_time_charge_1_costCodeOptions"></datalist>
-				</td>
-				<td><button id="one_time_charge_1_delete" type="button" onclick="deleteRow('one_time_charge_row_1')">X</button></td>
-			  </tr>
+		<label	class="column1-2 row3 centered bold" for="rep-charge-1">Repeatable Charges</label>
+		<button class="column3 row3" type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button>
 
-			  <tr>
-				<td><label for="start_date">Start Date</label></td>
-				<td><input id="start_date" type="date" name="Start Date"></td>
-			  </tr>
-			  <tr>
-				<td><label for="duration">Duration</label></td>
-				<td><input id="duration" type="number" name="Duration"></td>
-			  </tr>
-			  <tr>
-				<td><label for="rent_length">Rental Length</label></td>
-				<td>
-				  <label for="1">1</label>
-				  <input type="radio" name="rental length" id="1" value="1">
-				  <label for="7">7</label>
-				  <input type="radio" name="rental length" id="7" value="7">
-				  <label for="28">28</label>
-				  <input type="radio" name="rental length" id="28" value="28">
-				  <label for="30">30</label>
-				  <input type="radio" name="rental length" id="30" value="30">
+		<table id="repeatable-charges-table">
+			<tr id="rep-charge-row-1" class="rep">
+				<td class="description-input">
+					<input id="rep-charge-1" class="description" type="text" name="Repeatable Charge 1" list="rep-charge-1-options">
+					<datalist id="rep-charge-1-options"></datalist>
 				</td>
-					</tr>          
-				</tbody>
-			</table>
-		</form>
-	</div>
-    <button onclick="createUpload()">Create Rental</button>
-    <button onclick="window.location.reload()">New Rental</button>
+				<td class="price-input"><input id="rep-charge-1-price" class="price" type="number" placeholder="Price"></td>
+				<td><input id="rep-charge-1-costCode" class="costCode" type="text" value="400"></td>
+			</tr>
+		</table>
+
+		<label class="column1-2 row5 centered bold" for="one-time-charge-1">One Time Charges</label>
+		<button class="column3 row5" type="button" onclick="addRentalRow('single')">Add One Time Charge</button>
+
+		<table id="one-time-charges-table">
+			<tr id="one-time-charge-row-1" class="one-time">
+				<td class="description-input">
+					<input id="one-time-charge-1" class="description" type="text" list="one-time-charge-1-options">
+					<datalist id="one-time-charge-1-options"></datalist>
+				</td>
+				<td class="price-input"><input id="one-time-charge-1-price" class="price" type="number"  placeholder="Price"></td>
+				<td><input id="one-time-charge-1-costCode" class="costCode" type="text"  value="400"></td>
+				<td><button id="one-time-charge-1-delete"  type="button" onclick="deleteRow('one-time-charge-row-1')">X</button></td>
+			</tr>
+		</table>
+
+		<label class="column1 row7" for="start-date">Start Date</label>
+		<input class="column2 row7" id="start-date-input" type="date">
+
+		<label class="column1 row8" for="duration">Duration</label>
+		<input class="column2 row8" id="duration-input" type="number">
+
+		<label class="column1 row9" for="rent-length">Rental Length</label>
+		<div class="flex-container column2">
+			<label for="1">1</label>
+			<input type="radio" name="rental length" id="1" value="1">
+			<label for="7">7</label>
+			<input type="radio" name="rental length" id="7" value="7">
+			<label for="28">28</label>
+			<input type="radio" name="rental length" id="28" value="28">
+			<label for="30">30</label>
+			<input type="radio" name="rental length" id="30" value="30">
+		</div>
+
+		<button class="column1" onclick="createUpload()">Create Rental</button>
+		<button class="column2" onclick="window.location.reload()">New Rental</button>
+
+	</main>
+
 	<div>
 		<button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
 		<div id="rental-div" class="table">
