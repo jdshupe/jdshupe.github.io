@@ -72,7 +72,7 @@ function addRentalRow(chargeType) {
     case 'single':
       added_rows_one_time++;
       adder = added_rows_one_time;
-      type = 'one_time';
+      type = 'one-time';
       description = 'One Time';
       repeatable = false;
       break;
@@ -83,29 +83,28 @@ function addRentalRow(chargeType) {
   // create the new row to add
   var row = document.createElement('tr');
   Object.assign(row, {
-    id:        `${type}_charge_row_${adder}`,
+    id:        `${type}-charge-row-${adder}`,
     className: `${type}`
   })
 
   // create the input to get the description
   var descriptionInput = document.createElement('input');
   Object.assign(descriptionInput, {
-    id:        `${type}_charge_${adder}`,
-    className: `${type} description`,
-    name:      `${description} Charge ${adder}`
+    id:        `${type}-charge-${adder}`,
+    className: `${type} description`
   })
-  descriptionInput.setAttribute('list',`${type}_charge_${adder}_options`); // assign the description list
+  descriptionInput.setAttribute('list',`${type}-charge-${adder}-options`); // assign the description list
   // datalist to hold the description values
   // this is populated with data at the end of this function
   var datalist = document.createElement('datalist');
   Object.assign(datalist, {
-    id: `${type}_charge_${adder}_options`
+    id: `${type}-charge-${adder}-options`
   })
 
   // create the input to get the cost
   var price_entry = document.createElement('input');
   Object.assign(price_entry, {
-    id:          `${type}_charge_${adder}_price`,
+    id:          `${type}-charge-${adder}-price`,
     className:   `${type} price`,
     placeholder: 'Price'
   })
@@ -113,19 +112,19 @@ function addRentalRow(chargeType) {
   // create the input to get the cost code
   var costCodeInput = document.createElement('input');
   Object.assign(costCodeInput, {
-    id:         `${type}_charge_${adder}_costCode`,
+    id:         `${type}-charge-${adder}-costCode`,
     className:  `${type} costCode`,
     value:      `400`
   })
   var costCodeDataList = document.createElement('datalist');
   Object.assign(costCodeDataList, {
-    id: `${type}_charge_${adder}_costCodeOptions`
+    id: `${type}-charge-${adder}-costCodeOptions`
   })
 
   // create a button to delete the row
   var deleteButton = document.createElement('button');
   Object.assign(deleteButton, {
-    id:        `${type}_charge_${adder}_delete`,
+    id:        `${type}-charge-${adder}-delete`,
     className: `${type} delete`,
     type:      'button',
     innerHTML: 'X'
@@ -133,36 +132,32 @@ function addRentalRow(chargeType) {
   // assign functionality to the button
   deleteButton.setAttribute('onclick',`javascript: deleteRow('${row.id}');`);
 
-
-  // populate the cells of the row with the form objects created above
-  // cell 0 is blank to align with titles
-  row.insertCell(0)
-
   // cell 1 holds the description inputs and the datalist to go with it
-  var cell1 = row.insertCell(1)
+  var cell1 = row.insertCell(0)
   cell1.appendChild(descriptionInput)
   cell1.appendChild(datalist)
+	cell1.class="description-input";
 
   // cell 2 holds the cost of the line
-  var cell2 = row.insertCell(2)
+  var cell2 = row.insertCell(1)
   cell2.appendChild(price_entry)
+	cell2.class="price-input"
 
   // cell 3 holds the codeCode entry
-  var cell3 = row.insertCell(3)
+  var cell3 = row.insertCell(2)
   cell3.appendChild(costCodeInput)
   cell3.appendChild(costCodeDataList)
 
   // cell 4 hold the delte button
-  var cell4 = row.insertCell(4)
+  var cell4 = row.insertCell(3)
   cell4.appendChild(deleteButton)
 
-  if (type == 'one_time' && adder == 1) {
-    insertAfter(row, document.getElementById(`rep_charge_row_${added_rows_repeatable}`))
-    document.getElementById(`${type}_charge_row_${adder}`).children[0].innerHTML = "One Time Charges"
+  if (type == 'one-time' && adder == 1) {
+		document.getElementById(`one-time-charges-table`).children[0].appendChild(row)
   } else {
-    insertAfter(row, document.getElementById(`${type}_charge_row_${adder - 1}`))
+    insertAfter(row, document.getElementById(`${type}-charge-row-${adder - 1}`))
   }
-  populateDatalist(descriptionInput, repeatable)
+  populateDatalist(descriptionInput.id, repeatable)
 }
 
 
@@ -196,13 +191,13 @@ function createUpload () {
   $('#rental').toggle()
   document.getElementById('rental-body').innerHTML = '';
 
-  var items = {'repeatable':getLines('rep'), 'oneTime':getLines('one_time')}
-  var job_num = $('#job_num').val()
-  var wbs_code = $('#wbs_code').val()
-  var startDate = $('#start_date').val()
-  var duration = $('#duration').val()
+  var items = {'repeatable':getLines('rep'), 'oneTime':getLines('one-time')}
+  var job_num = $('#job-num-input').val()
+  var wbs_code = $('#wbs-code-input').val()
+  var startDate = $('#start-date-input').val()
+  var duration = $('#duration-input').val()
   var rentalLength = parseInt($('input[name="rental length"]:checked').val());
-  var taxCode = $('#tax_code').val()
+  var taxCode = $('#tax-code-input').val()
 
   items.repeatable.forEach(element => {
     addLineToUpload(element,job_num,startDate,0,rentalLength,taxCode, wbs_code, true)
@@ -321,10 +316,15 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
 
 
 
+/**
+ * removes an element by its id and updates row count
+ *
+ * @param {string} id
+ */
 function deleteRow(id) {
   var row = document.getElementById(id)
   row.remove()
-  id.includes("one_time") ? added_rows_one_time-- : added_rows_repeatable--
+  id.includes("one-time") ? added_rows_one_time-- : added_rows_repeatable--
 }
 
 
@@ -351,9 +351,13 @@ function selectElementContents(el) {
   document.execCommand("copy");
 }
 
-function populateDatalist(input, repeatable) {
+function populateDatalist(inputId, repeatable) {
   console.log('populateDatalist started')
-  var datalist = input.nextElementSibling;
+  var datalist = document.getElementById(inputId).nextElementSibling;
+	if (datalist.childElementCount > 0) {
+		console.log('Already Populated');
+		return 0;
+	}
   var arrayOfCharges = repeatable ? mainData.Data.repeatable : mainData.Data.oneTime;
   for (let i = 0; i < arrayOfCharges.length; i++) {
     var option = document.createElement('option');
