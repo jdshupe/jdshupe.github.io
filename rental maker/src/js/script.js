@@ -259,7 +259,7 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   } else descriptionWithDuration = dataObject.description
 
   var holder = row.insertCell(0)
-  holder.innerHTML = `&nbsp;`
+  holder.innerHTML = ``
   var addedLineType = row.insertCell(1)
   addedLineType.innerHTML = 'C'
   var plantItem = row.insertCell(2)
@@ -280,12 +280,12 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   price.innerHTML = dataObject.price
   var per = row.insertCell(10)
   per.innerHTML = 'EA'
-  row.insertCell(11).innerHTML = `&nbsp;`
-  row.insertCell(12).innerHTML = `&nbsp;`
+  row.insertCell(11).innerHTML = ``
+  row.insertCell(12).innerHTML = ``
   var taxCodeCell = row.insertCell(13)
   taxCodeCell.innerHTML = taxCode
-  row.insertCell(14).innerHTML = `&nbsp;`
-  row.insertCell(15).innerHTML = `&nbsp;`
+  row.insertCell(14).innerHTML = ``
+  row.insertCell(15).innerHTML = ``
   var pol_chgovd = row.insertCell(16)
   pol_chgovd.innerHTML = 'no'
   var tx = row.insertCell(17)
@@ -293,23 +293,21 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   var pol_taxovr = row.insertCell(18)
   pol_taxovr.innerHTML = 'yes'
   for (i = 19; i <= 32; i++) {
-    row.insertCell(i).innerHTML = `&nbsp`
+    row.insertCell(i).innerHTML = ``
   }
   var dueDate = row.insertCell(33)
   dueDate.innerHTML = new Date().toLocaleDateString()
-  row.insertCell(34).innerHTML = `&nbsp;`
-  row.insertCell(35).innerHTML = `&nbsp;`
-  row.insertCell(36).innerHTML = `&nbsp;`
+  row.insertCell(34).innerHTML = ``
+  row.insertCell(35).innerHTML = `0`
+  row.insertCell(36).innerHTML = `0`
   var costType = row.insertCell(37)
   costType.innerHTML = `${dataObject.costCode}E`
   var costCategory = row.insertCell(38)
   costCategory.innerHTML = 'E'
   var polFactor = row.insertCell(39)
   polFactor.innerHTML = 1
-  row.insertCell(40).innerHTML = `&nbsp;`
-  row.insertCell(41).innerHTML = `&nbsp;`
-  row.insertCell(42).innerHTML = `&nbsp;`
-  row.insertCell(43).innerHTML = `&nbsp;`
+  row.insertCell(40).innerHTML = ``
+  row.insertCell(41).innerHTML = ``
 
   document.getElementById('rental-body').appendChild(row)
 }
