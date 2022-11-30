@@ -20,7 +20,7 @@
 	<script>
 		var mainData = getCodes();
 	</script>
-	<main id="main-content" class="container">
+	<form id="main-content" class="container">
 		<label id="job-num-label"	class="column1 row1" for="job-num-input">Job Number</label>
 		<input id="job-num-input"	class="column2 row1" 
 			onclick="
@@ -79,11 +79,9 @@
 			<label for="30">30</label>
 			<input type="radio" name="rental length" id="30" value="30">
 		</div>
-
-		<button class="column1" onclick="createUpload()">Create Rental</button>
-		<button class="column2" onclick="window.location.reload()">New Rental</button>
-
-	</main>
+		<button type="button" class="column1" onclick="createUpload()">Create Rental</button>
+		<button type="reset" value="New Rental" onClick="window.location.reload()">New Rental</button>
+	</form>
 
 	<div>
 		<button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
