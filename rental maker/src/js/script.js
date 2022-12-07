@@ -259,7 +259,7 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   } else descriptionWithDuration = dataObject.description
 
   var holder = row.insertCell(0)
-  holder.innerHTML = ``
+  holder.innerHTML = `&nbsp`
   var addedLineType = row.insertCell(1)
   addedLineType.innerHTML = 'C'
   var plantItem = row.insertCell(2)
