@@ -101,6 +101,13 @@ function addRentalRow(chargeType) {
     id: `${type}-charge-${adder}-options`
   })
 
+	var qty_entry = document.createElement('input');
+	Object.assign(qty_entry, {
+		id:			`${type}-charge-${adder}-qty`,
+		className:	`${type} qty`,
+		value:		`1`
+	})
+
   // create the input to get the cost
   var price_entry = document.createElement('input');
   Object.assign(price_entry, {
@@ -138,19 +145,23 @@ function addRentalRow(chargeType) {
   cell1.appendChild(datalist)
 	cell1.class="description-input";
 
-  // cell 2 holds the cost of the line
-  var cell2 = row.insertCell(1)
-  cell2.appendChild(price_entry)
-	cell2.class="price-input"
+	// cell 2 holds the qty input
+	var cell2 = row.insertCell(1)
+	cell2.appendChild(qty_entry)
 
-  // cell 3 holds the codeCode entry
+  // cell 3 holds the cost of the line
   var cell3 = row.insertCell(2)
-  cell3.appendChild(costCodeInput)
-  cell3.appendChild(costCodeDataList)
+  cell3.appendChild(price_entry)
+	cell3.class="price-input"
+
+  // cell 4 holds the codeCode entry
+  var cell4 = row.insertCell(3)
+  cell4.appendChild(costCodeInput)
+  cell4.appendChild(costCodeDataList)
 
   // cell 4 hold the delte button
-  var cell4 = row.insertCell(3)
-  cell4.appendChild(deleteButton)
+  var cell5 = row.insertCell(4)
+  cell5.appendChild(deleteButton)
 
   if (type == 'one-time' && adder == 1) {
 		document.getElementById(`one-time-charges-table`).children[0].appendChild(row)
@@ -174,6 +185,7 @@ function getLines (type) {
     return {
       'description': description.split(' - ')[0],
       'value': description.split(' - ')[1],
+	  'qty': $(this).find('.qty').val(),
       'price': $(this).find('.price').val(),
       'costCode': $(this).find('.costCode').val()
     }
@@ -273,7 +285,7 @@ function addLineToUpload (dataObject, jobNumber, startDate, monthTick, rentalLen
   var wbsCode = row.insertCell(6)
   wbsCode.innerHTML = wbsCodeValue
   var quantity = row.insertCell(7)
-  quantity.innerHTML = 1
+  quantity.innerHTML = dataObject.qty
   var un = row.insertCell(8)
   un.innerHTML = 'EA'
   var price = row.insertCell(9)
