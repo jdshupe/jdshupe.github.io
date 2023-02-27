@@ -20,7 +20,10 @@
 	<script>
 		var mainData = getCodes();
 	</script>
+
 	<form id="main-content" class="container">
+
+		<!-- Row 1 -->
 		<label id="job-num-label"	class="column1 row1" for="job-num-input">Job Number</label>
 		<input id="job-num-input"	class="column2 row1" 
 			onclick="
@@ -30,12 +33,15 @@
 			type="text">
 		<input id="wbs-code-input"	class="column3 row1" type="text" value="0A-00-">
 
+		<!-- Row 2 -->
 		<label id="tax-code-label"	class="column1 row2" for="tax_code-input">Tax Code</label>
 		<input id="tax-code-input"	class="column2 row2" type="text" name="Tax Code">
 
+		<!-- Row 3 -->
 		<label	class="column1-2 row3" for="rep-charge-1">Repeatable Charges</label>
 		<button class="column3 row3" type="button" onclick="addRentalRow('repeatable')">Add Repeatable Charge</button>
 
+		<!-- Row 4 -->
 		<table id="repeatable-charges-table">
 			<tr id="rep-charge-row-1" class="rep">
 				<td class="description-input">
@@ -85,54 +91,60 @@
 		<button type="reset" value="New Rental" onClick="window.location.reload()">New Rental</button>
 	</form>
 
+	<div id="history-table-div">
+		<table id="history-table">
+		</table>
+	</div>
+
+
 	<div>
 		<button id="select-table" onclick="selectElementContents(document.getElementById('rental'))">Copy Table</button>
 		<div id="rental-div" class="table">
 		<table id="rental" hidden>
 			<thead>
 				<tr>
-					<td>Item</td>
-					<td>Added Line Type</td>
-					<td>Plant Item?</td>
-					<td>Job</td>
-					<td>Code</td>
-					<td>Description</td>
-					<td>WBS Code</td>
-					<td>Quantity</td>
-					<td>Un</td>
-					<td>Price</td>
-					<td>Per</td>
-					<td>Disc%</td>
-					<td>Merchandise</td>
-					<td>Sales/Use Tax Code</td>
-					<td>Freight</td>
-					<td>pol_fchgControl__1</td>
-					<td>pol_chgovd__1</td>
-					<td>T/X</td>
-					<td>pol_taxovr__1</td>
-					<td>Tax</td>
-					<td>Service Order Number</td>
-					<td>RO_sso_desc</td>
-					<td>RO_slc_name</td>
-					<td>pot_type</td>
-					<td>sso_intref</td>
-					<td>RO_se_orderRowid</td>
-					<td>TO_FromSeSorlItem</td>
-					<td>Type of Work</td>
-					<td>RO_sao_desc</td>
-					<td>sao_intref</td>
-					<td>Job Number</td>
-					<td>RO_pol_job_name</td>
-					<td>se_job_number</td>
-					<td>Due Date</td>
-					<td>Further Discount %</td>
-					<td>pol_disc3</td>
-					<td>pol_disc4</td>
-					<td>Cost Type</td>
-					<td>Cost Category</td>
-					<td>pol_factor</td>
-					<td>Eligible NPA Purchase with Supplier</td>
-					<td>Eligible Manufacturer</td>
+					<th>Item</th>
+					<th>Added Line Type</th>
+					<th>Plant Item?</th>
+					<th>Job</th>
+					<th>Code</th>
+					<th>Description</th>
+					<th>WBS Code</th>
+					<th>Quantity</th>
+					<th>Un</th>
+					<th>Price</th>
+					<th>Per</th>
+					<th>Disc%</th>
+					<th>Merchandise</th>
+					<th>Sales/Use Tax Code</th>
+					<th>Freight</th>
+					<th>pol_fchgControl__1</th>
+					<th>pol_chgovd__1</th>
+					<th>T/X</th>
+					<th>pol_taxovr__1</th>
+					<th>Tax</th>
+					<th>Service Order Number</th>
+					<th>RO_sso_desc</th>
+					<th>RO_slc_name</th>
+					<th>pot_type</th>
+					<th>sso_intref</th>
+					<th>RO_se_orderRowid</th>
+					<th>TO_FromSeSorlItem</th>
+					<th>Type of Work</th>
+					<th>RO_sao_desc</th>
+					<th>sao_intref</th>
+					<th>Job Number</th>
+					<th>RO_pol_job_name</th>
+					<th>se_job_number</th>
+					<th>Due Date</th>
+					<th>Further Discount %</th>
+					<th>pol_disc3</th>
+					<th>pol_disc4</th>
+					<th>Cost Type</th>
+					<th>Cost Category</th>
+					<th>pol_factor</th>
+					<th>Eligible NPA Purchase with Supplier</th>
+					<th>Eligible Manufacturer</th>
 			  </tr>
 		    </thead>
 			<tbody id="rental-body">

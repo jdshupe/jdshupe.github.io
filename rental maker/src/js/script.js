@@ -200,30 +200,34 @@ function getLines (type) {
  *
  */
 function createUpload () {
-  $('#rental').toggle()
-  document.getElementById('rental-body').innerHTML = '';
+	$('#rental').toggle()
+	document.getElementById('rental-body').innerHTML = '';
 
-  var items = {'repeatable':getLines('rep'), 'oneTime':getLines('one-time')}
-  var job_num = $('#job-num-input').val()
-  var wbs_code = $('#wbs-code-input').val()
-  var startDate = $('#start-date-input').val()
-  var duration = $('#duration-input').val()
-  var rentalLength = parseInt($('input[name="rental length"]:checked').val());
-  var taxCode = $('#tax-code-input').val()
+	var items = {'repeatable':getLines('rep'), 'oneTime':getLines('one-time')}
+	var job_num = $('#job-num-input').val()
+	var wbs_code = $('#wbs-code-input').val()
+	var startDate = $('#start-date-input').val()
+	var duration = $('#duration-input').val()
+	var rentalLength = parseInt($('input[name="rental length"]:checked').val());
+	var taxCode = $('#tax-code-input').val()
 
-  items.repeatable.forEach(element => {
-    addLineToUpload(element,job_num,startDate,0,rentalLength,taxCode, wbs_code, true)
-  });
-  items.oneTime.forEach(element => {
-    addLineToUpload(element,job_num,startDate,0,rentalLength, taxCode, wbs_code)
-  });
-  if (duration > 1) {
-    for (let month = 1; month < duration; month++) {
-      items.repeatable.forEach(element => {
-        addLineToUpload(element,job_num,startDate,month,rentalLength, taxCode, wbs_code,true)
-      });
-    }
-  }
+	items.repeatable.forEach(element => {
+		addLineToUpload(element,job_num,startDate,0,rentalLength,taxCode, wbs_code, true)
+	});
+	items.oneTime.forEach(element => {
+		addLineToUpload(element,job_num,startDate,0,rentalLength, taxCode, wbs_code)
+	});
+	if (duration > 1) {
+		for (let month = 1; month < duration; month++) {
+			items.repeatable.forEach(element => {
+				addLineToUpload(element,job_num,startDate,month,rentalLength, taxCode, wbs_code,true)
+			});
+		}
+	}
+	console.log($('#rental')[0].hidden)
+	if ($('#rental').is(":visible")) {
+		displayJobsTable(tableToJson('rental'), "history-table")
+	}
 }
 
 
@@ -380,3 +384,80 @@ function populateDatalist(inputId, repeatable) {
 
 var added_rows_repeatable = 1;
 var added_rows_one_time = 1;
+
+
+function tableToJson(tableId) {
+	var table = document.getElementById(tableId);
+	var data = [];
+
+	// first row needs to be headers
+	var headers = [];
+
+	for (var i=0; i<table.rows[0].cells.length; i++) {
+		headers[i] = table.rows[0].cells[i].innerHTML.replace(/[\n\t]/g, '');
+	}
+
+	 // go through cells
+	for (var i=1; i<2; i++) {
+
+		var tableRow = table.rows[i];
+		var rowData = {};
+
+		for (var j=0; j<tableRow.cells.length; j++) {
+			rowData[headers[j]] = tableRow.cells[j].innerHTML.replace(/[\n\t]/g, '');
+		}
+			data.push(rowData);
+		}       
+
+	// return the data as a JSON string
+	return JSON.stringify(data);
+}
+
+function displayJobsTable(stringifiedTables, tableId) {
+	const table = document.getElementById(tableId);
+	console.log(stringifiedTables);
+	console.log(JSON.parse(stringifiedTables));
+
+	let jobs = [];
+
+	//Parse each stringified table into an array of job objects
+	for (let i = 0; i < JSON.parse(stringifiedTables).length; i++) {
+		jobs = JSON.parse(stringifiedTables);
+	}
+	console.log(jobs);
+
+	if (!hasTableHeader(tableId)) {
+
+		// Create table headers
+		const headers = ['Job', 'Description', 'Start Date', 'Duration'];
+		
+		const headerRow = document.createElement('thead');
+		for (let i = 0; i < headers.length; i++) {
+			headerRow.appendChild(document.createElement('th')).
+				appendChild(document.createTextNode(headers[i]));
+		}
+		table.appendChild(headerRow);
+	}
+
+	// Create table rows
+	for (let i = 0; i < jobs.length; i++) {
+		const job = jobs[i];
+		const row = table.insertRow();
+		const jobCell = row.insertCell();
+		jobCell.textContent = job['Job'];
+		const descCell = row.insertCell();
+		descCell.textContent = job['Description'];
+		const startDateCell = row.insertCell();
+		startDateCell.textContent = job['Start Date'];
+		const durationCell = row.insertCell();
+		durationCell.textContent = job['Duration'];
+	}
+}
+
+function hasTableHeader(tableElementName) {
+	tableElement = document.getElementById(tableElementName);
+	if (tableElement.children[0] && tableElement.children[0].nodeName === 'THEAD') {
+		return true;
+	}
+	return false;
+}
