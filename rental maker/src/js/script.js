@@ -40,18 +40,6 @@ function getCodes () {
 
 
 /**
- * Inserts a new Node (newNode) before another node (referenceNode)
- *
- * @param {Object} newNode - Node to be added
- * @param {Object} referenceNode - Node to be inserted before
- */
-function insertAfter(newNode, referenceNode) {
-  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
-}
-
-
-
-/**
  * Add a new line for rental information to the input form
  *
  * @param {string} chargeType - type of line to be added
@@ -233,21 +221,6 @@ function createUpload () {
 
 
 /**
- * Pads a number with leading zeros
- *
- * @param {number} num - the number to be padded
- * @param {number} size - the length of the number to be returned
- * @return {string} - the initial number with enough leading zeros to be the size provided
- */
-function pad(num, size) {
-  num = num.toString();
-  while (num.length < size) num = "0" + num;
-  return num;
-}
-
-
-
-/**
  * Called by the create upload function to add the individual lines
  *
  * @param {object} dataObject
@@ -365,6 +338,15 @@ function selectElementContents(el) {
   document.execCommand("copy");
 }
 
+
+
+/** populateDatalist
+ * Uses data from the mainData var to create the selection options
+ * dynamically.
+ *
+ * @param {string} inputId - the ID of the input element to add the options to
+ * @param {boolean} repeatable - if the data should be the repeatable values
+ */
 function populateDatalist(inputId, repeatable) {
   console.log('populateDatalist started')
   var datalist = document.getElementById(inputId).nextElementSibling;
@@ -413,17 +395,22 @@ function tableToJson(tableId) {
 	return JSON.stringify(data);
 }
 
+
+
+/**
+ * Displays a table of jobs based on the provided stringifiedTables and tableId parameters.
+ *
+ * @param {string} stringifiedTables - A stringified JSON array of job objects.
+ * @param {string} tableId - The ID of the HTML table element where the jobs should be displayed.
+ * @returns {void} This function does not return anything.
+ */
 function displayJobsTable(stringifiedTables, tableId) {
 	const table = document.getElementById(tableId);
-	console.log(stringifiedTables);
-	console.log(JSON.parse(stringifiedTables));
 
 	let jobs = [];
 
 	//Parse each stringified table into an array of job objects
-	for (let i = 0; i < JSON.parse(stringifiedTables).length; i++) {
-		jobs = JSON.parse(stringifiedTables);
-	}
+	jobs = JSON.parse(stringifiedTables);
 	console.log(jobs);
 
 	if (!hasTableHeader(tableId)) {
@@ -446,11 +433,11 @@ function displayJobsTable(stringifiedTables, tableId) {
 		const jobCell = row.insertCell();
 		jobCell.textContent = job['Job'];
 		const descCell = row.insertCell();
-		descCell.textContent = job['Description'];
+		descCell.textContent = job['Description'].split(" - ")[0];
 		const startDateCell = row.insertCell();
-		startDateCell.textContent = job['Start Date'];
+		startDateCell.textContent = job['Description'].split(" - ")[1];
 		const durationCell = row.insertCell();
-		durationCell.textContent = job['Duration'];
+		durationCell.textContent = job['Description'].split(" - ")[2];
 	}
 }
 
