@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"name": "John Shupe",
+		"email": "jshupe@amteck.com"
+	},
+	{
+		"id": "2",
+		"name": "Calin Stewart",
+		"email": "calin.stewart@amteck.com"
+	}
+]
