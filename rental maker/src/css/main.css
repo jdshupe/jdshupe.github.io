@@ -19,10 +19,9 @@ table {
 	display: grid;
 	grid-template-columns: 0.4fr 0.75fr 0.75fr;
 	grid-template-rows: repeat(10, auto);
-	border: rgb(210,210,210) solid 1px;
+	border: rgb(210,210,210) solid 2px;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: rgba(10,10,10,.25) 10px 10px 5px;
 	margin: 10px;
 }
 
@@ -33,10 +32,9 @@ table {
 	float: right;
 
 	display: grid;
-	border: rgb(210,210,210) solid 1px;
+	border: rgb(210,210,210) solid 2px;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: rgba(10,10,10,.25) 10px 10px 5px;
 	margin: 10px;
 }
 
